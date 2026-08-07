@@ -1,0 +1,11 @@
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.1
+
+# Linting & Code quality
+ruff>=0.1.0
+markdownlint-cli2>=0.10.0
+
+# Included from main requirements
+-r requirements.txt

@@ -25,10 +25,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install dev dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint Python code
+        run: ruff check scripts/ tests/
+
+      - name: Run unit tests
+        run: pytest tests/ -v --cov=scripts --cov-fail-under=75
+
       - name: Download posts from Dev.to
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
         run: python3 scripts/backup.py
+
+      - name: Validate Markdown quality
+        run: markdownlint-cli2 '**/*.md' '#.git' 2>&1 || true
 
       - name: Commit and push changes
         run: |
