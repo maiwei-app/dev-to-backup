@@ -45,14 +45,14 @@ class TestFetchUserPosts:
     def test_fetch_single_page(self, mock_get, mock_post):
         """Test fetching posts from a single page."""
         mock_response = Mock()
-        mock_response.json.return_value = [mock_post]
+        mock_response.json.side_effect = [[mock_post], []]  # Posts then empty to exit loop
         mock_get.return_value = mock_response
 
         posts = fetch_user_posts("colomr")
 
         assert len(posts) == 1
         assert posts[0]["id"] == 123
-        mock_get.assert_called_once()
+        assert mock_get.call_count == 2  # Called once per page + once to detect empty
 
     @patch("scripts.backup.requests.get")
     def test_fetch_multiple_pages(self, mock_get, mock_post):
@@ -74,13 +74,13 @@ class TestFetchUserPosts:
     def test_fetch_with_api_key(self, mock_get, mock_post):
         """Test API key is included in headers."""
         mock_response = Mock()
-        mock_response.json.return_value = [mock_post]
+        mock_response.json.side_effect = [[mock_post], []]
         mock_get.return_value = mock_response
 
         fetch_user_posts("colomr", api_key="test-key")
 
         # Verify API key was passed in headers
-        call_kwargs = mock_get.call_args[1]
+        call_kwargs = mock_get.call_args_list[0][1]
         assert call_kwargs["headers"]["api-key"] == "test-key"
 
 
