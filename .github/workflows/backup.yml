@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Download posts from Dev.to
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
