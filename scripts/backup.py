@@ -51,6 +51,18 @@ def fetch_user_posts(username: str, api_key: str = "") -> list[dict]:
     return all_posts
 
 
+def fetch_post_details(post_id: int, api_key: str = "") -> dict:
+    """Fetch full post details including body_markdown."""
+    url = f"{DEVTO_BASE_URL}/articles/{post_id}"
+    headers = {}
+    if api_key:
+        headers["api-key"] = api_key
+
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.json()
+
+
 def is_scheduled_run() -> bool:
     """Check if this is a scheduled run (vs manual trigger)."""
     event_name = os.getenv("GITHUB_EVENT_NAME", "")
@@ -83,32 +95,45 @@ def get_backup_filename(post: dict) -> str:
     return str(day_dir / filename)
 
 
-def post_to_markdown(post: dict) -> str:
+def post_to_markdown(post: dict, details: dict = None) -> str:
     """Convert Dev.to post to Markdown format with metadata."""
     published = datetime.fromisoformat(
         post["published_at"].replace("Z", "+00:00")
     ).strftime("%Y-%m-%d")
 
+    # Use full details if available, otherwise fall back to summary
+    content = details.get("body_markdown", "") if details else ""
+    if not content:
+        content = f"*{post.get('description', 'No description available')}*"
+
     markdown = f"""# {post['title']}
 
 **Published:** {published}
 **URL:** {post['url']}
-**Tags:** {', '.join(f'#{tag}' for tag in post['tag_list'])}
+**Tags:** {', '.join(f'#{tag}' for tag in post.get('tag_list', []))}
+**Reading time:** {post.get('reading_time_minutes', '?')} min
 
 ---
 
-{post['body_markdown']}
+{content}
 """
     return markdown
 
 
-def save_posts(posts: list[dict]) -> int:
+def save_posts(posts: list[dict], api_key: str = "") -> int:
     """Save posts to files and return count of new/modified posts."""
     saved_count = 0
 
     for post in posts:
+        try:
+            # Try to fetch full post details
+            details = fetch_post_details(post["id"], api_key)
+        except Exception as e:
+            print(f"Warning: Could not fetch full details for post {post['id']}: {e}")
+            details = None
+
         filepath = get_backup_filename(post)
-        content = post_to_markdown(post)
+        content = post_to_markdown(post, details)
 
         path_obj = Path(filepath)
         if not path_obj.exists() or path_obj.read_text() != content:
@@ -124,7 +149,7 @@ def main():
         posts = fetch_user_posts(DEVTO_USERNAME, DEVTO_API_KEY)
         print(f"Fetched {len(posts)} posts from Dev.to")
 
-        saved = save_posts(posts)
+        saved = save_posts(posts, DEVTO_API_KEY)
         print(f"Saved {saved} new or modified posts")
 
         return 0
