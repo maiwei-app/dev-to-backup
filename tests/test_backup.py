@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Unit tests for Dev.to backup script."""
 
-import json
 from datetime import datetime
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 
