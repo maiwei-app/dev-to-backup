@@ -6,10 +6,10 @@ from unittest.mock import Mock, patch
 import pytest
 
 from scripts.backup import (
-    fetch_user_posts,
     fetch_post_details,
-    is_scheduled_run,
+    fetch_user_posts,
     get_backup_filename,
+    is_scheduled_run,
     post_to_markdown,
     save_posts,
 )
