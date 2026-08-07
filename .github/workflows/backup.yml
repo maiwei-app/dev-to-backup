@@ -40,7 +40,10 @@ jobs:
         run: python3 scripts/backup.py
 
       - name: Validate Markdown quality
-        run: markdownlint-cli2 '**/*.md' '#.git' 2>&1 || true
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          config_file: .markdownlint.json
 
       - name: Commit and push changes
         run: |
