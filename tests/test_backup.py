@@ -127,10 +127,12 @@ class TestGetBackupFilename:
     def test_manual_filename_increment(self, mock_glob, mock_scheduled, mock_post):
         """Test manual filename increments correctly."""
         mock_scheduled.return_value = False
-        mock_glob.return_value = [
-            Mock(name="manual-1.md"),
-            Mock(name="manual-2.md"),
-        ]
+        # Mock glob to return Path-like objects with .name attribute
+        mock_file1 = Mock()
+        mock_file1.name = "manual-1.md"
+        mock_file2 = Mock()
+        mock_file2.name = "manual-2.md"
+        mock_glob.return_value = [mock_file1, mock_file2]
 
         filename = get_backup_filename(mock_post)
 
@@ -160,8 +162,8 @@ class TestPostToMarkdown:
         """Test markdown includes required metadata."""
         markdown = post_to_markdown(mock_post, mock_post_details)
 
-        assert "Published: 2026-08-07" in markdown
-        assert "Reading time: 5 min" in markdown
+        assert "**Published:** 2026-08-07" in markdown
+        assert "**Reading time:** 5 min" in markdown
 
 
 class TestSavePosts:
