@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    uses: maiwei-app/workflows/.github/workflows/ci-python.yml@main
+    with:
+      requirements-file: requirements-dev.txt
