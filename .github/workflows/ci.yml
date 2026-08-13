@@ -11,3 +11,10 @@ jobs:
     uses: maiwei-app/workflows/.github/workflows/ci-python.yml@main
     with:
       requirements-file: requirements-dev.txt
+
+  sonar:
+    uses: maiwei-app/workflows/.github/workflows/sonar-scan.yml@main
+    with:
+      project-key: maiwei-app_dev-to-backup
+    secrets:
+      sonar-token: ${{ secrets.SONAR_TOKEN }}
