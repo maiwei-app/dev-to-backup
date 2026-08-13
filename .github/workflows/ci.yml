@@ -12,3 +12,5 @@ jobs:
 
   quality:
     uses: maiwei-app/workflows/.github/workflows/ci-python.yml@main
+    with:
+      requirements-file: requirements-dev.txt
