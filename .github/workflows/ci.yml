@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  no-ai-attribution:
+    uses: maiwei-app/workflows/.github/workflows/no-ai-attribution.yml@main
+
+  quality:
+    uses: maiwei-app/workflows/.github/workflows/ci-python.yml@main
