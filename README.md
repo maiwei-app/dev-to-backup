@@ -21,7 +21,8 @@ Runs automatically on the 1st of each month at 00:00 UTC.
 
 **Trigger:** Cron schedule  
 **Runs:** `scripts/backup.py`  
-**Commits:** New/updated posts to `main`
+**Commits:** Opens a PR with new/updated posts (branch protection requires
+review before merging to `main`)
 
 ### Manual Backup
 Trigger anytime from GitHub Actions UI.
@@ -102,7 +103,10 @@ This repository uses reusable workflows from `maiwei-app/workflows`:
 - **`ci-python.yml`** — Lint + tests on every PR and push to `main`
   - Runs: ruff lint + pytest + JSON validation
   - Requires: 75% test coverage
-  
+
+- **`sonar-scan.yml`** — SonarCloud quality gate on every PR
+  - Required check for merging (org-wide ruleset)
+
 - **`no-ai-attribution.yml`** — Enforces human authorship
   - Blocks commits attributed to AI
   - Required for all PRs
