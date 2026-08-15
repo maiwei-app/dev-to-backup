@@ -4,8 +4,8 @@ module.exports = {
     // raise body max line length so release-please messages don't fail
     'body-max-line-length': [2, 'always', 200],
   },
-  // ignore Release Please generated footers / messages
+  // ignore Release Please related messages and customizations
   ignores: [
-    (commit) => /This PR was generated with Release Please/.test(commit),
+    (commit) => /Release Please|release-please/i.test(commit),
   ],
 };
