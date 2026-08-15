@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.0...v1.0.1) (2026-08-15)
+
+
+### Bug Fixes
+
+* **release:** use release-please's actual config key names ([#8](https://github.com/maiwei-app/dev-to-backup/issues/8)) ([a1666e6](https://github.com/maiwei-app/dev-to-backup/commit/a1666e6c814c5a1ae45b80734ab3141ff415d7f6))
+
 ## 1.0.0 (2026-08-15)
 
 
