@@ -19,10 +19,13 @@ jobs:
           app-id: ${{ vars.MAIBOT_APP_ID }}
           private-key: ${{ secrets.MAIBOT_APP_PRIVATE_KEY }}
 
+      # DO NOT add "release-type" here as a direct input — with release-type present,
+      # release-please-action@v4 ignores config-file/manifest-file entirely (it uses
+      # Manifest.fromConfig instead of fromManifest). release-type belongs only inside
+      # .release-please-config.json. See maiwei-app/workflows#40 and #41.
       - name: Run Release Please
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
-          release-type: simple
           config-file: .release-please-config.json
           manifest-file: .release-please-manifest.json
