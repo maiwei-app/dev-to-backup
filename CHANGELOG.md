@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.2...v1.0.3) (2026-08-17)
+
+
+### Bug Fixes
+
+* drop redundant leading separator from PR footer ([#15](https://github.com/maiwei-app/dev-to-backup/issues/15)) ([67720d5](https://github.com/maiwei-app/dev-to-backup/commit/67720d5a2970bb77ca449a4014473bd88307fd92))
+
 ## [1.0.2](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.1...v1.0.2) (2026-08-17)
 
 
