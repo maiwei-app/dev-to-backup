@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.1...v1.0.2) (2026-08-17)
+
+
+### Bug Fixes
+
+* use manifest-mode config for release-please ([#14](https://github.com/maiwei-app/dev-to-backup/issues/14)) ([4f0a84c](https://github.com/maiwei-app/dev-to-backup/commit/4f0a84c380bcb5b6522a2a30167b462dc341c6ce))
+
 ## [1.0.1](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.0...v1.0.1) (2026-08-15)
 
 
