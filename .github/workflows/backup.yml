@@ -47,9 +47,16 @@ jobs:
           config_file: .markdownlint.json
         continue-on-error: true
 
+      - name: Generate maibot-app token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.MAIBOT_APP_ID }}
+          private-key: ${{ secrets.MAIBOT_APP_PRIVATE_KEY }}
+
       - name: Open backup PR
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git config user.name "dev-to-backup[bot]"
           git config user.email "noreply@github.com"
