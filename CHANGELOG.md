@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.3...v1.0.4) (2026-09-01)
+
+
+### Bug Fixes
+
+* **ci:** open the backup PR with a maibot-app token ([#18](https://github.com/maiwei-app/dev-to-backup/issues/18)) ([328b85e](https://github.com/maiwei-app/dev-to-backup/commit/328b85ebec8886efc60a9ebfacf6b4cbe56d5b01))
+
 ## [1.0.3](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.2...v1.0.3) (2026-08-17)
 
 
