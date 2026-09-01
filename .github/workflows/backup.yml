@@ -60,8 +60,8 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git config user.name "dev-to-backup[bot]"
-          git config user.email "noreply@github.com"
+          git config user.name "F Colomer"
+          git config user.email "colomr@pm.me"
           git add -A
           if git diff --quiet --cached; then
             echo "No changes to back up"
@@ -69,9 +69,9 @@ jobs:
           fi
           branch="backup/$(date -u +'%Y-%m-%d')"
           git checkout -b "$branch"
-          git commit -m "Backup Dev.to posts - $(date -u +'%Y-%m-%d')"
+          git commit -m "chore(backup): sync Dev.to posts for $(date -u +'%Y-%m-%d')"
           git push origin "$branch"
           gh pr create \
-            --title "Backup Dev.to posts - $(date -u +'%Y-%m-%d')" \
+            --title "chore(backup): sync Dev.to posts for $(date -u +'%Y-%m-%d')" \
             --body "Automated monthly backup of Dev.to posts." \
             --base main --head "$branch"
