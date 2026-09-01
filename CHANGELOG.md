@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.4...v1.0.5) (2026-09-01)
+
+
+### Bug Fixes
+
+* **ci:** repair the invalid YAML in the pip install steps ([#22](https://github.com/maiwei-app/dev-to-backup/issues/22)) ([2d3d2ef](https://github.com/maiwei-app/dev-to-backup/commit/2d3d2ef2c55b98f45bc992b7af04e3628a703193)), closes [#20](https://github.com/maiwei-app/dev-to-backup/issues/20)
+
 ## [1.0.4](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.3...v1.0.4) (2026-09-01)
 
 
