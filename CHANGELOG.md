@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.6...v1.0.7) (2026-09-01)
+
+
+### Bug Fixes
+
+* untrack the .coverage database ([#30](https://github.com/maiwei-app/dev-to-backup/issues/30)) ([ea25207](https://github.com/maiwei-app/dev-to-backup/commit/ea252072bb1bf5e308f41bfee5b7aa7087fa44fa)), closes [#29](https://github.com/maiwei-app/dev-to-backup/issues/29)
+
 ## [1.0.6](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.5...v1.0.6) (2026-09-01)
 
 
