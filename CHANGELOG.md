@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.5...v1.0.6) (2026-09-01)
+
+
+### Bug Fixes
+
+* **ci:** make the backup PR pass its own checks ([#26](https://github.com/maiwei-app/dev-to-backup/issues/26)) ([f27d626](https://github.com/maiwei-app/dev-to-backup/commit/f27d626f20bac37ec6065add54403647ef3c66df)), closes [#25](https://github.com/maiwei-app/dev-to-backup/issues/25)
+
 ## [1.0.5](https://github.com/maiwei-app/dev-to-backup/compare/v1.0.4...v1.0.5) (2026-09-01)
 
 
